@@ -1,8 +1,10 @@
 # Data files — too large to commit to git (downloaded by src/download_data.py)
 data/raw/*
 data/processed/*
+data/external/*
 !data/raw/.gitkeep
 !data/processed/.gitkeep
+!data/external/.gitkeep
 
 # Python
 __pycache__/

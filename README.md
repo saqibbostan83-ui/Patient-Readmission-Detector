@@ -155,6 +155,8 @@ Preprocessing lives inside each model as a sklearn `Pipeline` (one-hot + standar
 
 ## 7 · Results (20,354-row hold-out)
 
+> **Prediction Timing:** All models operate at **discharge-time**, leveraging information accumulated over the completed inpatient encounter (length of stay, inpatient lab/procedure counts, medication modifications, and discharge disposition) to support post-discharge transitional care triage.
+
 | Model | ROC-AUC | PR-AUC | Accuracy | Precision | Recall | F1 | Fit time |
 |---|---|---|---|---|---|---|---|
 | **Random Forest** 🏆 | **0.6777** | 0.2167 | 0.6780 | 0.1854 | 0.5557 | 0.2781 | 15s |
@@ -184,18 +186,53 @@ Preprocessing lives inside each model as a sklearn `Pipeline` (one-hot + standar
   hospice / home), **prior inpatient visits**, **service utilisation** and the **diagnosis
   mix** dominate — exactly what the readmission literature reports.
 
-**Serving calibration** — class-weighted models inflate absolute probabilities (an
+**Serving calibration & threshold behavior** — class-weighted models inflate absolute probabilities (an
 average patient scored ~0.42 vs a true base rate of 0.11). The model served in the demo
-(`models/best_model.joblib`) is therefore the Random Forest wrapped in
-`CalibratedClassifierCV` (isotonic, 3-fold). Ranking metrics are unchanged, but the
-displayed risk is now a genuine probability. Full numbers: `models/metrics.json`
-(`served_model` section).
+(`models/best_model.joblib`) is the Random Forest wrapped in `CalibratedClassifierCV` (isotonic, 3-fold).
+While isotonic calibration brings the Brier score down to **0.0946** and realigns the mean risk with the
+population prevalence (0.1116), evaluating it with an unadjusted default 0.50 threshold causes recall to collapse to **1.14%**
+(missing 2,245 out of 2,271 readmissions). When realigned via a separate validation split without test-set leakage,
+an operating threshold of **t = 0.144** recovers **44.43% recall** and **0.2765 F1** (1,009 readmissions identified).
+The model is a research prototype, not a turnkey clinical deployment tool.
 
-## 8 · Demo app
+### 7.1 Patient-Grouped Validation (0% Patient Leakage)
+In standard encounter-level splits, **41.6%** of test encounters belong to patients who also appear in training data.
+To measure true prospective generalization to unseen patients, we implemented `StratifiedGroupKFold` on `patient_nbr` (Protocol B).
+The patient-grouped 5-fold tuned Random Forest achieved an ROC-AUC of **0.6753** [95% CI: 0.6626, 0.6883] and PR-AUC of **0.2181**
+on 19,698 encounters from completely unseen patients (0.0% patient overlap).
+*Methodological note:* Comparing encounter-level Logistic Regression (ROC-AUC 0.6682) against patient-grouped Random Forest (ROC-AUC 0.6753) confounds the model family with the split protocol; the isolated effect of patient grouping alone has not been experimentally isolated under an identical architecture.
 
-`streamlit run app/app.py` → edit a patient profile (age, admission type, length of stay,
-prior utilisation, diagnosis group, labs…) and get an instant calibrated readmission risk
-with comparison to the population base rate.
+### 7.2 SHAP Explainability & Structural Cohort Limitation
+Actual SHAP values were calculated on test encounters (`reports/figures/13_shap_summary.png` and `14_shap_bar.png`):
+- **Structural Cohort Issue:** In the un-excluded dataset, `discharge_disposition_Expired/Hospice` shows high SHAP importance because in-hospital death deterministically prevents readmission. This is a structural artifact of retrospective administrative data, not an actionable risk factor for living patients.
+- **Eligible (Living) Cohort Sub-Analysis (`reports/figures/15_shap_bar_eligible.png`):** When restricted strictly to eligible living patients discharged alive, the true clinical risk drivers emerge:
+  - **Prior inpatient admissions (`number_inpatient`)** is the single strongest clinical hazard driver (mean |SHAP| = 0.236).
+  - **Discharge disposition** (transfers to nursing/rehab facilities vs. discharge directly home) strongly stratifies post-discharge risk.
+  - **Medication count and insulin regimen modifications** provide key signals of chronic disease severity and clinical instability.
+
+### 7.3 Reference Literature Clarification (Emi-Johnson & Nkrumah, 2025)
+- The published study reports an overall F1 of 0.89 in its abstract/Table 1 without defining the averaging method; however, Table 2 of the paper explicitly reports positive-class (<30-day readmission) F1 as **0.032** (precision 43.7%, recall 1.6%).
+- The paper's test set size of 20,354 matches 20.00% of the raw 101,766 dataset, raising a valid methodological question regarding whether and how stated exclusions were applied, though it does not independently prove the exact implementation sequence.
+
+## 8 · Interactive Research Dashboard
+
+Launch the complete 8-page clinical research dashboard with:
+
+```bash
+.\.venv\Scripts\streamlit run app/app.py
+```
+
+### Dashboard Features:
+1. **Project Overview:** High-level project KPIs, dataset parameters (101,766 encounters, 50 features), and visual pipeline architecture.
+2. **Exploratory Data Analysis:** Class imbalance (11.16% readmission rate), missing value profiles, and key clinical drivers.
+3. **Model Performance Benchmark:** Side-by-side metrics across all 5 baseline models, interactive confusion matrices, and ROC/PR curves.
+4. **Validation & Leakage Audit:** Empirical demonstration of 41.6% patient identity leakage vs. 0.0% overlap under `StratifiedGroupKFold`.
+5. **Explainable AI & SHAP:** Global beeswarm attributions, magnitude vs. direction distinction, and eligible-cohort living sub-analysis.
+6. **Interactive Prediction Demo:** Pre-populated hypothetical encounter form with instant calibrated probability and validation-threshold risk stratification ($t = 0.1442$).
+7. **Research Paper Comparison:** Transparent benchmark against Emi-Johnson & Nkrumah (2025) and documentation of published contradictions.
+8. **Limitations & Conclusion:** Honest scientific boundaries and academic takeaways.
+
+*Demonstration guide for instructor viva defense:* See [DASHBOARD_GUIDE.md](file:///c:/Users/dell/Documents/AI_model-ASSIGNMENT/reports/DASHBOARD_GUIDE.md).
 
 ## 9 · Conclusions & limitations
 

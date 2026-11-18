@@ -1,0 +1,18 @@
+[
+  [
+    "All encounters (UCI file)",
+    101766
+  ],
+  [
+    "Excluded discharged to hospice / expired",
+    99343
+  ],
+  [
+    "Excluded age bins [0-10) and [10-20) (adult approximation)",
+    98493
+  ],
+  [
+    "Valid readmission label",
+    98493
+  ]
+]

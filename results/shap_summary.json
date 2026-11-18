@@ -1,0 +1,102 @@
+[
+  {
+    "feature": "number_inpatient",
+    "mean_abs_shap": 0.24433661997318268
+  },
+  {
+    "feature": "discharge_disposition_Transferred",
+    "mean_abs_shap": 0.13525687158107758
+  },
+  {
+    "feature": "discharge_disposition_Home",
+    "mean_abs_shap": 0.0966297835111618
+  },
+  {
+    "feature": "service_utilization",
+    "mean_abs_shap": 0.07978810369968414
+  },
+  {
+    "feature": "n_active_medications",
+    "mean_abs_shap": 0.0778074860572815
+  },
+  {
+    "feature": "num_medications",
+    "mean_abs_shap": 0.07220479846000671
+  },
+  {
+    "feature": "discharge_disposition_Expired/Hospice",
+    "mean_abs_shap": 0.07122039049863815
+  },
+  {
+    "feature": "num_lab_procedures",
+    "mean_abs_shap": 0.06592409312725067
+  },
+  {
+    "feature": "number_diagnoses",
+    "mean_abs_shap": 0.06257864087820053
+  },
+  {
+    "feature": "time_in_hospital",
+    "mean_abs_shap": 0.06110083684325218
+  },
+  {
+    "feature": "primary_diag_Circulatory",
+    "mean_abs_shap": 0.05462303012609482
+  },
+  {
+    "feature": "age",
+    "mean_abs_shap": 0.05047181248664856
+  },
+  {
+    "feature": "primary_diag_Respiratory",
+    "mean_abs_shap": 0.04761365056037903
+  },
+  {
+    "feature": "num_procedures",
+    "mean_abs_shap": 0.03427067771553993
+  },
+  {
+    "feature": "number_outpatient",
+    "mean_abs_shap": 0.026625502854585648
+  },
+  {
+    "feature": "secondary_diag_Respiratory",
+    "mean_abs_shap": 0.024013683199882507
+  },
+  {
+    "feature": "lab_monitoring_score",
+    "mean_abs_shap": 0.021234648302197456
+  },
+  {
+    "feature": "secondary_diag_Diabetes",
+    "mean_abs_shap": 0.019741082563996315
+  },
+  {
+    "feature": "medical_specialty_Cardiology",
+    "mean_abs_shap": 0.018781505525112152
+  },
+  {
+    "feature": "medical_specialty_Emergency/Trauma",
+    "mean_abs_shap": 0.018100950866937637
+  },
+  {
+    "feature": "admission_source_Transfer",
+    "mean_abs_shap": 0.018084846436977386
+  },
+  {
+    "feature": "number_emergency",
+    "mean_abs_shap": 0.01698956824839115
+  },
+  {
+    "feature": "primary_diag_Diabetes",
+    "mean_abs_shap": 0.015617068856954575
+  },
+  {
+    "feature": "additional_diag_Other",
+    "mean_abs_shap": 0.015321606770157814
+  },
+  {
+    "feature": "additional_diag_Circulatory",
+    "mean_abs_shap": 0.012689516879618168
+  }
+]

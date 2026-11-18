@@ -1,0 +1,12 @@
+00:19:43 | INFO | Cohort flow: [('All encounters (UCI file)', 101766), ('Excluded discharged to hospice / expired', 99343), ('Excluded age bins [0-10) and [10-20) (adult approximation)', 98493), ('Valid readmission label', 98493)]
+00:19:44 | INFO | === Replication | protocol=encounter | {"protocol": "encounter", "n_train": 78794, "n_test": 19699, "pos_rate_train": 0.11443764753661446, "pos_rate_test": 0.11442205188080613, "n_pos_test": 2254, "test_encounters_with_patient_in_train": 8223, "test_encounters_with_patient_in_train_pct": 41.74323569724351, "n_patients_train": 58303, "n_patients_test": 17787}
+00:20:06 | INFO | FS-R matrix: 261 features after one-hot encoding
+00:20:06 | INFO | [encounter/A_replication] A_LR: 4 candidates x 5 folds
+00:21:41 | INFO |    -> best {'C': 0.01} | CV AUC 0.6625±0.0069 | TEST AUC 0.6682 PR-AUC 0.2214 | thr(F1,OOF)=0.524 | 94s
+00:21:41 | INFO | Replication finished in 2.4 min
+00:37:28 | INFO | Cohort flow: [('All encounters (UCI file)', 101766), ('Excluded discharged to hospice / expired', 99343), ('Excluded age bins [0-10) and [10-20) (adult approximation)', 98493), ('Valid readmission label', 98493)]
+00:38:25 | INFO | === Replication | protocol=patient | {"protocol": "patient", "n_train": 78795, "n_test": 19698, "pos_rate_train": 0.11443619519005013, "pos_rate_test": 0.11442786069651742, "n_pos_test": 2254, "test_encounters_with_patient_in_train": 0, "test_encounters_with_patient_in_train_pct": 0.0, "n_patients_train": 55479, "n_patients_test": 13835}
+00:38:45 | INFO | FS-R matrix: 260 features after one-hot encoding
+00:38:45 | INFO | [patient/A_replication] A_RF: 6 candidates x 5 folds
+00:54:16 | INFO |    -> best {'max_depth': 20, 'min_samples_leaf': 10} | CV AUC 0.6698±0.0024 | TEST AUC 0.6753 PR-AUC 0.2181 | thr(F1,OOF)=0.509 | 929s
+00:54:16 | INFO | Replication finished in 17.3 min
