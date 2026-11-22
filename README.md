@@ -216,7 +216,7 @@ Actual SHAP values were calculated on test encounters (`reports/figures/13_shap_
 
 ## 8 · Interactive Research Dashboard
 
-Launch the complete 8-page clinical research dashboard --> [CARELYTICS](https://carelytics.streamlit.app/)
+CARELYTICS DASHBOARD LINK:  [CARELYTICS](https://carelytics.streamlit.app/)
 
 ### Dashboard Features:
 1. **Project Overview:** High-level project KPIs, dataset parameters (101,766 encounters, 50 features), and visual pipeline architecture.
