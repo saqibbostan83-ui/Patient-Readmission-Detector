@@ -1,23 +1,24 @@
-# Data files — too large to commit to git (downloaded by src/download_data.py)
-data/raw/*
-data/processed/*
-data/external/*
-!data/raw/.gitkeep
-!data/processed/.gitkeep
-!data/external/.gitkeep
-
 # Python
 __pycache__/
 *.py[cod]
-*.egg-info/
+*.pyo
 .venv/
 venv/
-.ipynb_checkpoints/
-.pytest_cache/
+env/
 
-# OS
+# Jupyter
+.ipynb_checkpoints/
+
+# Secrets
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# OS files
 .DS_Store
 Thumbs.db
 
-# Jupyter
-.jupyter/
+# Temporary files
+*.log
+*.tmp

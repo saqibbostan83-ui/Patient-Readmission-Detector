@@ -10,3 +10,37 @@
 00:38:45 | INFO | [patient/A_replication] A_RF: 6 candidates x 5 folds
 00:54:16 | INFO |    -> best {'max_depth': 20, 'min_samples_leaf': 10} | CV AUC 0.6698±0.0024 | TEST AUC 0.6753 PR-AUC 0.2181 | thr(F1,OOF)=0.509 | 929s
 00:54:16 | INFO | Replication finished in 17.3 min
+00:11:40 | INFO | Cohort flow: [('All encounters (UCI file)', 101766), ('Excluded discharged to hospice / expired', 99343), ('Excluded age bins [0-10) and [10-20) (adult approximation)', 98493), ('Valid readmission label', 98493)]
+00:11:41 | INFO | === Replication | protocol=encounter | {"protocol": "encounter", "n_train": 78794, "n_test": 19699, "pos_rate_train": 0.11443764753661446, "pos_rate_test": 0.11442205188080613, "n_pos_test": 2254, "test_encounters_with_patient_in_train": 8223, "test_encounters_with_patient_in_train_pct": 41.74323569724351, "n_patients_train": 58303, "n_patients_test": 17787}
+00:12:00 | INFO | FS-R matrix: 261 features after one-hot encoding
+00:12:00 | INFO | [encounter/A_replication] A_LR: 4 candidates x 5 folds
+00:13:26 | INFO |    -> best {'C': 0.01} | CV AUC 0.6625±0.0069 | TEST AUC 0.6682 PR-AUC 0.2214 | thr(F1,OOF)=0.524 | 85s
+00:13:26 | INFO | [encounter/A_replication] A_RF: 6 candidates x 5 folds
+00:26:40 | INFO |    -> best {'max_depth': None, 'min_samples_leaf': 10} | CV AUC 0.6708±0.0055 | TEST AUC 0.6798 PR-AUC 0.2318 | thr(F1,OOF)=0.515 | 792s
+00:26:40 | INFO | [encounter/A_replication] A_XGB: 8 candidates x 5 folds
+00:30:51 | INFO |    -> best {'learning_rate': 0.05, 'max_depth': 3, 'n_estimators': 500} | CV AUC 0.6698±0.0063 | TEST AUC 0.6778 PR-AUC 0.2369 | thr(F1,OOF)=0.543 | 250s
+00:30:51 | INFO | [encounter/A_replication] A_DNN: 4 candidates x 5 folds
+00:35:24 | INFO |    -> best {'dropout': 0.4, 'hidden': (128, 64)} | CV AUC 0.6665±0.0050 | TEST AUC 0.6749 PR-AUC 0.2296 | thr(F1,OOF)=0.589 | 273s
+00:35:24 | INFO | Replication finished in 24.2 min
+12:59:50 | INFO | Cohort flow: [('All encounters (UCI file)', 101766), ('Excluded discharged to hospice / expired', 99343), ('Excluded age bins [0-10) and [10-20) (adult approximation)', 98493), ('Valid readmission label', 98493)]
+13:00:39 | INFO | === Replication | protocol=patient | {"protocol": "patient", "n_train": 78885, "n_test": 19608, "pos_rate_train": 0.11463522849717944, "pos_rate_test": 0.11362709098327213, "n_pos_test": 2228, "test_encounters_with_patient_in_train": 0, "test_encounters_with_patient_in_train_pct": 0.0, "n_patients_train": 55479, "n_patients_test": 13835}
+13:00:54 | INFO | FS-R matrix: 261 features after one-hot encoding
+13:00:54 | INFO | [patient/A_replication] A_LR: 4 candidates x 5 folds
+13:03:37 | INFO |    -> best {'C': 0.01} | CV AUC 0.6633±0.0042 | TEST AUC 0.6651 PR-AUC 0.2149 | thr(F1,OOF)=0.521 | 163s
+13:03:37 | INFO | [patient/A_replication] A_XGB: 8 candidates x 5 folds
+13:10:03 | INFO |    -> best {'learning_rate': 0.1, 'max_depth': 3, 'n_estimators': 200} | CV AUC 0.6703±0.0039 | TEST AUC 0.6754 PR-AUC 0.2271 | thr(F1,OOF)=0.563 | 385s
+13:10:03 | INFO | [patient/A_replication] A_DNN: 4 candidates x 5 folds
+13:19:46 | INFO |    -> best {'dropout': 0.4, 'hidden': (128, 64)} | CV AUC 0.6702±0.0036 | TEST AUC 0.6698 PR-AUC 0.2194 | thr(F1,OOF)=0.550 | 583s
+13:19:46 | INFO | Replication finished in 20.1 min
+13:23:43 | INFO | Cohort flow: [('All encounters (UCI file)', 101766), ('Excluded discharged to hospice / expired', 99343), ('Excluded age bins [0-10) and [10-20) (adult approximation)', 98493), ('Valid readmission label', 98493)]
+13:24:37 | INFO | === Replication | protocol=patient | {"protocol": "patient", "n_train": 78885, "n_test": 19608, "pos_rate_train": 0.11463522849717944, "pos_rate_test": 0.11362709098327213, "n_pos_test": 2228, "test_encounters_with_patient_in_train": 0, "test_encounters_with_patient_in_train_pct": 0.0, "n_patients_train": 55479, "n_patients_test": 13835}
+13:24:53 | INFO | FS-R matrix: 261 features after one-hot encoding
+13:24:53 | INFO | [patient/A_replication] A_LR: 4 candidates x 5 folds
+13:27:42 | INFO |    -> best {'C': 0.01} | CV AUC 0.6633±0.0042 | TEST AUC 0.6651 PR-AUC 0.2149 | thr(F1,OOF)=0.521 | 168s
+13:27:42 | INFO | [patient/A_replication] A_RF: 6 candidates x 5 folds
+14:04:22 | INFO |    -> best {'max_depth': None, 'min_samples_leaf': 10} | CV AUC 0.6725±0.0038 | TEST AUC 0.6724 PR-AUC 0.2168 | thr(F1,OOF)=0.451 | 2197s
+14:04:22 | INFO | [patient/A_replication] A_XGB: 8 candidates x 5 folds
+14:10:57 | INFO |    -> best {'learning_rate': 0.1, 'max_depth': 3, 'n_estimators': 200} | CV AUC 0.6703±0.0039 | TEST AUC 0.6754 PR-AUC 0.2271 | thr(F1,OOF)=0.563 | 395s
+14:10:57 | INFO | [patient/A_replication] A_DNN: 4 candidates x 5 folds
+14:21:01 | INFO |    -> best {'dropout': 0.4, 'hidden': (128, 64)} | CV AUC 0.6702±0.0036 | TEST AUC 0.6698 PR-AUC 0.2194 | thr(F1,OOF)=0.550 | 603s
+14:21:01 | INFO | Replication finished in 57.5 min

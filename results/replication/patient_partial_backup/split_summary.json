@@ -1,0 +1,12 @@
+{
+  "protocol": "patient",
+  "n_train": 78885,
+  "n_test": 19608,
+  "pos_rate_train": 0.11463522849717944,
+  "pos_rate_test": 0.11362709098327213,
+  "n_pos_test": 2228,
+  "test_encounters_with_patient_in_train": 0,
+  "test_encounters_with_patient_in_train_pct": 0.0,
+  "n_patients_train": 55479,
+  "n_patients_test": 13835
+}

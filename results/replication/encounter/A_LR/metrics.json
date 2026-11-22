@@ -102,8 +102,8 @@
   "n_train": 78794,
   "n_test": 19699,
   "n_features": 261,
-  "final_fit_seconds": 1.556617259979248,
-  "total_seconds": 94.18408036231995,
+  "final_fit_seconds": 1.2802672386169434,
+  "total_seconds": 85.4206371307373,
   "sampler": null,
   "config": {
     "feature_set": "FS-R",
